@@ -1,14 +1,10 @@
-##How it all started
+## Initial common steps have been written just once in this file 
+FileUrl="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+if(!file.exists("./data")){dir.create("./data")}
+download.file(FileUrl, tmp <- tempfile(fileext = ".zip"))
+unzip(tmp, exdir = "./data")
 
-##All required data was read in a file named HW411.txt
-Y <- read.csv2("HW411.txt")   ## Reading file in a variable
-Y[,1] <- as.Date(dmy(Y[,1])) ## Converted factor to date format in first column of the data
-Z <- paste(Y[,1], Y[,2]) ## Created single Date_Time entity in a new variable.
-Z <- strptime(Z, "%Y-%m-%d %H:%M:%S")  ## Converted into POSIXlt format (the standard one)
-Date_Time <- strptime(Z, "%Y-%m-%d %H:%M:%S", "Time")
-X <- data.frame(Date_Time, Y[, c(3:9)]) ## New variable with Date_Time as first column and further columns are remaining data of original file. 
-
-## This Variable "X" has been used for plotting of graphs 
-
-
-
+hpc <- read.table("./data/household_power_consumption.txt", header=TRUE, sep=";", na.strings="?")
+hpc_2days <- hpc[hpc$Date %in% c("1/2/2007","2/2/2007"),]   ## Reading required data in a variable
+hpc_2days$Date_Time <- (paste(hpc_2days$Date, hpc_2days$Time))    ## Created single Date_Time entity in a new variable
+hpc_2days$Date_Time <- strptime(hpc_2days$Date_Time, format = "%d/%m/%Y %H:%M:%S") ## Converted into POSIXlt format (the standard one)
