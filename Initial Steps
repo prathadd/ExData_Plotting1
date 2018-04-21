@@ -1,0 +1,14 @@
+##How it all started
+
+##All required data was read in a file named HW411.txt
+Y <- read.csv2("HW411.txt")   ## Reading file in a variable
+Y[,1] <- as.Date(dmy(Y[,1])) ## Converted factor to date format in first column of the data
+Z <- paste(Y[,1], Y[,2]) ## Created single Date_Time entity in a new variable.
+Z <- strptime(Z, "%Y-%m-%d %H:%M:%S")  ## Converted into POSIXlt format (the standard one)
+Date_Time <- strptime(Z, "%Y-%m-%d %H:%M:%S", "Time")
+X <- data.frame(Date_Time, Y[, c(3:9)]) ## New variable with Date_Time as first column and further columns are remaining data of original file. 
+
+## This Variable "X" has been used for plotting of graphs 
+
+## The plots are first created in Rstudio device and then exported and saved as image directly from the R, 
+## and not through the code as such an option is available.
