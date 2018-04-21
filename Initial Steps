@@ -12,3 +12,4 @@ X <- data.frame(Date_Time, Y[, c(3:9)]) ## New variable with Date_Time as first 
 
 ## The plots are first created in Rstudio device and then exported and saved as image directly from the R, 
 ## and not through the code as such an option is available.
+
