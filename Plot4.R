@@ -12,3 +12,6 @@ lines(X[,1], as.numeric(as.character(X[,7])), col = "red")
 lines(X[,1], as.numeric(as.character(X[,8])), col = "blue")
 
 plot(X[,1], as.numeric(as.character(X[,3])), xlab = "Days",ylab = "Global Reactive Power", type = "l")
+# copy plot4 to png device, named as "plot2.png"
+dev.copy(png, file="Plot4.png", width=480, height=480)
+dev.off()
